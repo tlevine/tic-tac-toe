@@ -8,6 +8,10 @@
 
 #board.____x____ .five:after { content: 'x'; }
 #board.____x____ #turn:after { content: "o's turn"; }
+
+#board.____x___o .five:after { content: 'x'; }
+#board.____x___o .nine:after { content: 'o'; }
+#board.____x___o #turn:after { content: "x's turn"; }
 </style>
 
 <div id="board" class="____x____">
