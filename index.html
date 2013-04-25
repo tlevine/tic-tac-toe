@@ -6,6 +6,8 @@
 #board > .row div { width: 100px; font-size: 60px; vertical-align: middle; float: left; display: inline; }
 .cell { margin: 10px; background-color: #DDD; width: 80px; height: 80px; }
 
+#board._________ #turn:after { content: "x's turn"; }
+
 #board.____x____ .five:after { content: 'x'; }
 #board.____x____ #turn:after { content: "o's turn"; }
 
@@ -14,7 +16,7 @@
 #board.____x___o #turn:after { content: "x's turn"; }
 </style>
 
-<div id="board" class="____x____">
+<div id="board" class="_________">
     <div class="row">
         <div class="cell one"></div>
         <div class="cell two"></div>
