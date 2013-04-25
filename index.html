@@ -1,10 +1,27 @@
 <style>
-#board.____x____ .one .x {
-}
+#board, #board > .row { margin: 0; padding: 0; }
+#board { text-align: center; }
+#board > .row { height: 100px; }
+#board > .row div { width: 100px; font-size: 60px; vertical-align: middle; float: left; display: inline; }
+.cell { margin: 10px; background-color: #DDD; width: 80px; height: 80px; }
+
+#board.____x____ .five:after { content: 'x'; }
 </style>
 
-<table id="board" class="____x__ox">
-    <tr><td class="one"><span class="x">x</span><span class="o">o</span></td><td class="two"></td><td class="three"></td></tr>
-    <tr><td class="four"></td><td class="five"></td><td class="six"></td></tr>
-    <tr><td class="seven"></td><td class="eight"></td><td class="nine"></td></tr>
-</table>
+<div id="board" class="____x____">
+    <div class="row">
+        <div class="cell one"></div>
+        <div class="cell two"></div>
+        <div class="cell three"></div>
+    </div>
+    <div class="row">
+        <div class="cell four"></div>
+        <div class="cell five"></div>
+        <div class="cell six"></div>
+    </div>
+    <div class="row">
+        <div class="cell seven"></div>
+        <div class="cell eight"></div>
+        <div class="cell nine"></div>
+    </div>
+</div>
