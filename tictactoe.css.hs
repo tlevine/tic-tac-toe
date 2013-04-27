@@ -37,6 +37,11 @@ turn :: Board -> Side
 turn = undefined
 
 -- CSS
+cssBoard :: Board -> String
+cssBoard b = undefined
+
 cssTurn :: Board -> String
-cssTurn b = "#board." ++ (fromBoard b) ++ " .five:after { content: '" ++ x ++ "'; }"
+cssTurn b
+| turn b == Empty = ""
+| otherwise = "#board." ++ (cssBoard b) ++ " #turn:after { content: \"" ++ (fromSide $ turn b) ++ "'s turn\"; }"
 
