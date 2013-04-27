@@ -1,5 +1,3 @@
-
-
 #board._________ #turn:after { content: "x's turn"; }
 
 #board.____x____ .five:after { content: 'x'; }
