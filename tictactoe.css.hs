@@ -42,6 +42,6 @@ cssBoard b = undefined
 
 cssTurn :: Board -> String
 cssTurn b
-| turn b == Empty = ""
+| turn b == Empty = "#board." ++ (cssBoard b) ++ " #turn:after { content: \"" ++ (winner b) ++ " wins!\"; }"
 | otherwise = "#board." ++ (cssBoard b) ++ " #turn:after { content: \"" ++ (fromSide $ turn b) ++ "'s turn\"; }"
 
