@@ -1,63 +1,43 @@
-<style>
-#board, #board > .row { margin: 0; padding: 0; }
-#board { width: 360px; margin-left: auto; margin-right: auto; }
-#board { text-align: center; }
-#board > .row { height: 100px; }
-#board > .row div { width: 100px; font-size: 60px; vertical-align: middle; float: left; display: inline; }
-.cell { margin: 10px; background-color: #DDD; width: 80px; height: 80px; }
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" xml:lang="en" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-#board._________ #turn:after { content: "x's turn"; }
-
-#board.____x____ .five:after { content: 'x'; }
-#board.____x____ #turn:after { content: "o's turn"; }
-
-#board.____x___o .five:after { content: 'x'; }
-#board.____x___o .nine:after { content: 'o'; }
-#board.____x___o #turn:after { content: "x's turn"; }
-</style>
-
-<div id="board" class="_________">
-    <div class="row">
-        <div class="cell one"></div>
-        <div class="cell two"></div>
-        <div class="cell three"></div>
-    </div>
-    <div class="row">
-        <div class="cell four"></div>
-        <div class="cell five"></div>
-        <div class="cell six"></div>
-    </div>
-    <div class="row">
-        <div class="cell seven"></div>
-        <div class="cell eight"></div>
-        <div class="cell nine"></div>
-    </div>
-    <div id="turn"></div>
-</div>
-
-<script>
-var whose_turn = function(className) {
-    return ['x', 'o'][className.split('_').filter(function(a) { return a != ''; }).length % 2]
-}
-var cells = {
-    'cell one': 0, 'cell two': 1, 'cell three': 2,
-    'cell four': 3, 'cell five': 4, 'cell six': 5,
-    'cell seven': 6, 'cell eight': 7, 'cell nine': 8
-}
-var n, i, className
-
-// http://stackoverflow.com/questions/1431094/how-do-i-replace-a-character-at-a-particular-index-in-javascript
-String.prototype.replaceAt=function(index, character) {
-    return this.substr(0, index) + character + this.substr(index+character.length);
-}
-
-for (cell in cells){
-    document.getElementsByClassName(cell)[0].addEventListener('click', function(e) {
-        i = cells[e.target.className]
-        className = document.getElementById('board').className
-        if (className[i] == '_') {
-            document.getElementById('board').setAttribute('class', className.replaceAt(i, whose_turn(className)))
-        }
-    })
-}
-</script>
+  <title>Tic Tac Toe in CSS</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Tic Tac Toe in CSS with minimal JavaScript" />
+  <style>
+    #board, #board > .row { margin: 0; padding: 0; }
+    #board { width: 360px; margin-left: auto; margin-right: auto; }
+    #board { text-align: center; }
+    #board > .row { height: 100px; }
+    #board > .row div { width: 100px; font-size: 60px; vertical-align: middle; float: left; display: inline; }
+    .cell { margin: 10px; background-color: #DDD; width: 80px; height: 80px; }
+  </style>
+  <link rel="stylesheet" href="tictactoe.css" />
+</head>
+<body>
+  <div id="board" class="_________">
+      <div class="row">
+          <div class="cell one"></div>
+          <div class="cell two"></div>
+          <div class="cell three"></div>
+      </div>
+      <div class="row">
+          <div class="cell four"></div>
+          <div class="cell five"></div>
+          <div class="cell six"></div>
+      </div>
+      <div class="row">
+          <div class="cell seven"></div>
+          <div class="cell eight"></div>
+          <div class="cell nine"></div>
+      </div>
+      <div id="turn"></div>
+  </div>
+  <script src="tictactoe.js"></script>
+</body>
