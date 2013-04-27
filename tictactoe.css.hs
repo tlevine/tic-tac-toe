@@ -27,7 +27,7 @@ fromBoard b = [ fromSide (zero b),
                 fromSide (five b),
                 fromSide (six b),
                 fromSide (seven b),
-                fromSide (eight) ]
+                fromSide (eight b) ]
 
 -- Proerties
 winner :: Board -> Side
@@ -38,10 +38,20 @@ turn = undefined
 
 -- CSS
 cssBoard :: Board -> String
-cssBoard b = undefined
+cssBoard b = unlines $ map cell cellFuncs
+  where
+    cellFuncs = [(zero, "zero"),
+                 (one "one"),
+                 (two "two"),
+                 (three "three"),
+                 (four "four"),
+                 (five "five"),
+                 (six "six"),
+                 (seven "seven"),
+                 (eight "eight") ]
+    cell (cellFunc,cellWordNumber) = "#board." ++ (fromBoard b) ++ " ." ++ cellWordNumber ++ ":after { content: '"++ (cellFunc b) ++"'; }"
 
 cssTurn :: Board -> String
 cssTurn b
-| turn b == Empty = "#board." ++ (cssBoard b) ++ " #turn:after { content: \"" ++ (winner b) ++ " wins!\"; }"
-| otherwise = "#board." ++ (cssBoard b) ++ " #turn:after { content: \"" ++ (fromSide $ turn b) ++ "'s turn\"; }"
-
+| turn b == Empty = "#board." ++ (fromBoard b) ++ " #turn:after { content: \"" ++ (fromSide $ winner b) ++ " wins!\"; }"
+| otherwise = "#board." ++ (fromBoard b) ++ " #turn:after { content: \"" ++ (fromSide $ turn b) ++ "'s turn\"; }"
