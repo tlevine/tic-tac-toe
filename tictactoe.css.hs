@@ -56,5 +56,14 @@ cssTurn b
   | turn b == Empty = "#board." ++ (fromBoard b) ++ " #turn:after { content: \"" ++ (fromSide $ winner b):" wins!\"; }"
   | otherwise = "#board." ++ (fromBoard b) ++ " #turn:after { content: \"" ++ (fromSide $ turn b):"'s turn\"; }"
 
+bb = Board { zero = Empty,
+             one = X,
+             two = X,
+             three = O,
+             four = O,
+             five = X,
+             six = Empty,
+             seven = Empty,
+             eight = Empty }
 main = do
-  print "Hi"
+  putStrLn $ cssBoard bb
