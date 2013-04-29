@@ -49,7 +49,12 @@ winner b
       combinationWinners = dropWhile (== Empty) (map combinationWinner possibilities)
 
 turn :: Board -> Side
-turn = undefined
+turn b
+  | winner b /= Empty = Empty
+  | winner b == Empty && (length $ filter (== 'x') uglyBoard) > (length $ filter (== 'o') uglyBoard) = O
+  | otherwise = X
+  where
+    uglyBoard = fromBoard b
 
 -- CSS
 cssBoard :: Board -> String
