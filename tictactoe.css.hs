@@ -29,9 +29,24 @@ fromBoard b = [ fromSide (zero b),
                 fromSide (seven b),
                 fromSide (eight b) ]
 
--- Proerties
+-- Properties
 winner :: Board -> Side
-winner = undefined
+winner b 
+  | length combinationWinners == 0 = Empty
+  | otherwise = head combinationWinners
+    where
+      possibilities = [ (zero, one, two),
+                        (three, four, five),
+                        (six, seven, eight),
+                        (zero, three, six),
+                        (one, four, seven),
+                        (two, five, eight),
+                        (zero, four, eight),
+                        (three, four, six) ]
+      combinationWinner (x,y,z)
+        | x b == y b && x b == z b = x b
+        | otherwise = Empty
+      combinationWinners = dropWhile (== Empty) (map combinationWinner possibilities)
 
 turn :: Board -> Side
 turn = undefined
@@ -53,7 +68,7 @@ cssBoard b = unlines $ map cell cellFuncs
 
 cssTurn :: Board -> String
 cssTurn b
-  | turn b == Empty = "#board." ++ (fromBoard b) ++ " #turn:after { content: \"" ++ (fromSide $ winner b):" wins!\"; }"
+  | winner b /= Empty = "#board." ++ (fromBoard b) ++ " #turn:after { content: \"" ++ (fromSide $ winner b):" wins!\"; }"
   | otherwise = "#board." ++ (fromBoard b) ++ " #turn:after { content: \"" ++ (fromSide $ turn b):"'s turn\"; }"
 
 bb = Board { zero = Empty,
@@ -67,3 +82,4 @@ bb = Board { zero = Empty,
              eight = Empty }
 main = do
   putStrLn $ cssBoard bb
+  putStrLn $ cssTurn bb
