@@ -95,8 +95,7 @@ allBoards = map toBoard $ filter balanced $ mapM (const [X,O,Empty]) [1..9]
   where
     balanced b = (abs $ (length $ filter (== X) b) - (length $ filter (== O) b)) <= 1
 
-
-css b = (cssBoard b) ++ (cssTurn b)
+css b = (cssTurn b) ++ '\n':(cssBoard b)
 
 main = do
   putStrLn $ unlines $ map css allBoards
