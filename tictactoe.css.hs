@@ -18,12 +18,6 @@ fromSide X = 'x'
 fromSide O = 'o'
 fromSide Empty = '_'
 
-toSide :: Char -> Maybe Side
-toSide 'x' = X
-toSide 'o' = O
-toSide '_' = Empty
-toSide _ = Nothing
-
 fromBoard :: Board -> String
 fromBoard b = [ fromSide (zero b),
                 fromSide (one b),
@@ -35,20 +29,16 @@ fromBoard b = [ fromSide (zero b),
                 fromSide (seven b),
                 fromSide (eight b) ]
 
-toBoard :: String -> Maybe Board
-toBoard s
-  | ((length s) /= 9) = Nothing
-  | otherwise = b
-    where
-      b = Board { zero = toSide (s !! 0)
-                , one = toSide (s !! 1)
-                , two = toSide (s !! 2)
-                , three = toSide (s !! 3)
-                , four = toSide (s !! 4)
-                , five = toSide (s !! 5)
-                , six = toSide (s !! 6)
-                , seven = toSide (s !! 7)
-                , eight = toSide (s !! 8) }
+toBoard :: [Side] -> Board
+toBoard s = Board { zero = s !! 0
+                  , one = s !! 1
+                  , two = s !! 2
+                  , three = s !! 3
+                  , four = s !! 4
+                  , five = s !! 5
+                  , six = s !! 6
+                  , seven = s !! 7
+                  , eight = s !! 8 }
   
 
 -- Properties
@@ -108,10 +98,10 @@ bb = Board { zero = Empty,
              seven = Empty,
              eight = Empty }
 
-allBoards :: [Maybe Board]
-allBoards = map toBoard $ filter balanced $ mapM (const "xo_") [1..9]
+allBoards :: [Board]
+allBoards = map toBoard $ filter balanced $ mapM (const [X,O,Empty]) [1..9]
   where
-    balanced uglyBoard = abs $ (length $ filter (== 'x') uglyBoard) - (length $ filter (== 'o') uglyBoard) <= 1
+    balanced b = (abs $ (length $ filter (== X) b) - (length $ filter (== O) b)) <= 1
 
 main = do
   putStrLn $ cssBoard bb
