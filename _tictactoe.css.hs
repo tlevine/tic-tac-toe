@@ -81,7 +81,9 @@ cssBoard b = unlines $ map cell cellFuncs
                  (six, "six"),
                  (seven, "seven"),
                  (eight, "eight") ]
-    cell (cellFunc,cellWordNumber) = "#board." ++ (fromBoard b) ++ " ." ++ cellWordNumber ++ ":after { content: '"++ (fromSide $ cellFunc b):"'; }"
+    cell (cellFunc,cellWordNumber)
+      | cellFunc b == Empty = ""
+      | otherwise = "#board." ++ (fromBoard b) ++ " ." ++ cellWordNumber ++ ":after { content: '"++ (fromSide $ cellFunc b):"'; }"
 
 cssTurn :: Board -> String
 cssTurn b

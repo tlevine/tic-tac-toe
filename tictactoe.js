@@ -3,9 +3,9 @@
       return ['x', 'o'][className.split('_').filter(function(a) { return a != ''; }).length % 2]
   }
   var cells = {
-      'cell one': 0, 'cell two': 1, 'cell three': 2,
-      'cell four': 3, 'cell five': 4, 'cell six': 5,
-      'cell seven': 6, 'cell eight': 7, 'cell nine': 8
+      'cell zero': 0, 'cell one': 1, 'cell two': 2,
+      'cell three': 3, 'cell four': 4, 'cell five': 5,
+      'cell six': 6, 'cell seven': 7, 'cell eight': 8
   }
   var n, i, className
   
