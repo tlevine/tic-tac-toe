@@ -88,21 +88,13 @@ cssTurn b
   | winner b /= Empty = "#board." ++ (fromBoard b) ++ " #turn:after { content: \"" ++ (fromSide $ winner b):" wins!\"; }"
   | otherwise = "#board." ++ (fromBoard b) ++ " #turn:after { content: \"" ++ (fromSide $ turn b):"'s turn\"; }"
 
-bb = Board { zero = Empty,
-             one = X,
-             two = X,
-             three = O,
-             four = O,
-             five = X,
-             six = Empty,
-             seven = Empty,
-             eight = Empty }
-
 allBoards :: [Board]
 allBoards = map toBoard $ filter balanced $ mapM (const [X,O,Empty]) [1..9]
   where
     balanced b = (abs $ (length $ filter (== X) b) - (length $ filter (== O) b)) <= 1
 
+
+css b = (cssBoard b) ++ (cssTurn b)
+
 main = do
-  putStrLn $ cssBoard bb
-  putStrLn $ cssTurn bb
+  putStrLn $ unlines $ map css $ take 10 allBoards
