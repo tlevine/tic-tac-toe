@@ -97,4 +97,4 @@ allBoards = map toBoard $ filter balanced $ mapM (const [X,O,Empty]) [1..9]
 css b = (cssBoard b) ++ (cssTurn b)
 
 main = do
-  putStrLn $ unlines $ map css $ take 10 allBoards
+  putStrLn $ unlines $ map css allBoards
