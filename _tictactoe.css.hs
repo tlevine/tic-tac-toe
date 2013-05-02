@@ -83,12 +83,12 @@ cssBoard b = unlines $ map cell cellFuncs
                  (eight, "eight") ]
     cell (cellFunc,cellWordNumber)
       | cellFunc b == Empty = ""
-      | otherwise = "#board." ++ (fromBoard b) ++ " ." ++ cellWordNumber ++ ":after { content: '"++ (fromSide $ cellFunc b):"'; }"
+      | otherwise = "#board." ++ (fromBoard b) ++ " .cell." ++ cellWordNumber ++ ":before { content: '"++ (fromSide $ cellFunc b):"'; }\n" ++ "#board." ++ (fromBoard b) ++ " .clicker." ++ cellWordNumber ++ " { display: none; }\n"
 
 cssTurn :: Board -> String
 cssTurn b
-  | winner b /= Empty = "#board." ++ (fromBoard b) ++ " #turn:after { content: \"" ++ (fromSide $ winner b):" wins!\"; }"
-  | otherwise = "#board." ++ (fromBoard b) ++ " #turn:after { content: \"" ++ (fromSide $ turn b):"'s turn\"; }"
+  | winner b /= Empty = "#board." ++ (fromBoard b) ++ " #turn:before { content: \"" ++ (fromSide $ winner b):" wins!\"; }\n" ++ "#board." ++ (fromBoard b) ++ " .clicker { display: none; }"
+  | otherwise = "#board." ++ (fromBoard b) ++ " #turn:before { content: \"" ++ (fromSide $ turn b):"'s turn\"; }"
 
 allBoards :: [Board]
 allBoards = map toBoard $ filter balanced $ mapM (const [X,O,Empty]) [1..9]
